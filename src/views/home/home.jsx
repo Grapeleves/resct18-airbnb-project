@@ -3,13 +3,13 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import HomeBanner from './c-cnps/home-banner'
 import { HomeWrapper } from './style'
 import { fetchHomeDataAction } from '@/store/modules/home'
-import SectionHeader from '@/components/section-header'
-import SectionRooms from '@/components/section-rooms'
+import HomeSection from './c-cnps/home-section-v1'
 
 const Home = memo(() => {
   // 从rudex中获取数据
-  const {goodPriceInfo} =useSelector((state) => ({
-    goodPriceInfo: state.home.goodPriceInfo
+  const {goodPriceInfo, highScoreInfo} =useSelector((state) => ({
+    goodPriceInfo: state.home.goodPriceInfo,
+    highScoreInfo: state.home.highScoreInfo
   }),shallowEqual)
 
   // 派发异步请求
@@ -22,10 +22,8 @@ const Home = memo(() => {
     <HomeWrapper>
       <HomeBanner></HomeBanner>
       <div className='content'>
-        <div className='good-price'>
-          <SectionHeader title={goodPriceInfo.title}></SectionHeader>
-          <SectionRooms roomList={goodPriceInfo.list}></SectionRooms>
-        </div>
+        <HomeSection infoData={goodPriceInfo}></HomeSection>
+        <HomeSection infoData={highScoreInfo}></HomeSection>
       </div>
     </HomeWrapper>
   )
