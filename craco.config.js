@@ -1,5 +1,5 @@
 const path = require('path')
-const CracoLessPlugin = require('craco-less');
+// const CracoLessPlugin = require('craco-less');
 
 const pathResolve = pathnmae => path.resolve(__dirname, pathnmae)
 
@@ -11,17 +11,17 @@ module.exports = {
       "utils": pathResolve("src/utils")
     }
   },
-  plugins: [
-    {
-      plugin: CracoLessPlugin,
-      // options: {
-      //   lessLoaderOptions: {
-      //     lessOptions: {
-      //       modifyVars: { '@primary-color': '#1DA57A' },
-      //       javascriptEnabled: true,
-      //     },
-      //   },
-      // },
-    },
-  ],
+  // plugins: [
+  //   {
+  //     plugin: CracoLessPlugin,
+  //     options: {
+  //       lessLoaderOptions: {
+  //         lessOptions: {
+  //           modifyVars: { '@primary-color': '#1DA57A' },
+  //           javascriptEnabled: true,
+  //         },
+  //       },
+  //     },
+  //   },
+  // ],
 }
