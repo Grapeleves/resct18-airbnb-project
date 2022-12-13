@@ -13,3 +13,10 @@ export function getHomeHighSocreData() {
     url: '/home/highscore'
   })
 }
+
+// 获取折扣房源
+export function getHomeDiscountData() {
+  return SYRequest.get({
+    url: '/home/discount'
+  })
+}
