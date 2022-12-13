@@ -6,6 +6,7 @@ import { fetchHomeDataAction } from '@/store/modules/home'
 import HomeSection from './c-cnps/home-section-v1'
 import SectionHeader from '@/components/section-header'
 import SectionRooms from '@/components/section-rooms'
+import SectionTabs from '@/components/section-tabs'
 
 const Home = memo(() => {
   // 从rudex中获取数据
@@ -13,7 +14,10 @@ const Home = memo(() => {
     goodPriceInfo: state.home.goodPriceInfo,
     highScoreInfo: state.home.highScoreInfo,
     discountInfo:state.home.discountInfo
-  }),shallowEqual)
+  }), shallowEqual)
+  
+  // 数据处理
+  const tabNames = discountInfo.dest_address?.map(item => item.name)
 
   // 派发异步请求
   const dispatch = useDispatch()
@@ -28,6 +32,7 @@ const Home = memo(() => {
         {/* 折扣房源 */}
         <div className='discount'>
           <SectionHeader title={discountInfo.title} subtitle={discountInfo.subtitle} />
+          <SectionTabs tabNames={tabNames} />
           <SectionRooms roomList={discountInfo.dest_list?.['成都']} itemWidth="33.3333%"></SectionRooms>
         </div>
         {/* 高性价比房源 */}
