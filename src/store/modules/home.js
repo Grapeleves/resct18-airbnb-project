@@ -1,5 +1,5 @@
 // 采用RTK模式
-import { getHomeGoodPriceData, getHomeHighSocreData, getHomeDiscountData } from '@/services/modules/home'
+import { getHomeGoodPriceData, getHomeHighSocreData, getHomeDiscountData, getHomeHotRecommendData } from '@/services/modules/home'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchHomeDataAction = createAsyncThunk("fetchHomeData", (payload, { dispatch }) => {
@@ -14,6 +14,10 @@ export const fetchHomeDataAction = createAsyncThunk("fetchHomeData", (payload, {
   getHomeDiscountData().then(res => {
     dispatch(changeDiscountInfoAction(res))
   })
+
+  getHomeHotRecommendData().then(res => {
+    dispatch(changeRecommendInfoAction(res))
+  })
 })
 
 const homeSlice = createSlice({
@@ -21,7 +25,8 @@ const homeSlice = createSlice({
   initialState: {
     goodPriceInfo: {},
     highScoreInfo: {},
-    discountInfo: {}
+    discountInfo: {},
+    recommendInfo: {}
   },
   reducers: {
     changeGoodPriceInfoAction(state, { payload }) {
@@ -32,6 +37,9 @@ const homeSlice = createSlice({
     },
     changeDiscountInfoAction(state, { payload }) {
       state.discountInfo = payload
+    },
+    changeRecommendInfoAction(state, { payload }) {
+      state.recommendInfo = payload
     }
   },
   extraReducers: {
@@ -44,6 +52,7 @@ const homeSlice = createSlice({
 export const {
   changeGoodPriceInfoAction,
   changeHighScoreInfoAction,
-  changeDiscountInfoAction
+  changeDiscountInfoAction,
+  changeRecommendInfoAction
 } = homeSlice.actions
 export default homeSlice.reducer

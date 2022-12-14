@@ -20,3 +20,10 @@ export function getHomeDiscountData() {
     url: '/home/discount'
   })
 }
+
+// 获取热门推荐数据
+export function getHomeHotRecommendData() {
+  return SYRequest.get({
+    url: '/home/hotrecommenddest'
+  })
+}

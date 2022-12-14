@@ -1,23 +1,21 @@
 import React, { memo, useEffect } from 'react'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import HomeBanner from './c-cnps/home-banner'
-import { HomeWrapper } from './style'
-import { fetchHomeDataAction } from '@/store/modules/home'
 import HomeSection from './c-cnps/home-section-v1'
-import SectionHeader from '@/components/section-header'
-import SectionRooms from '@/components/section-rooms'
-import SectionTabs from '@/components/section-tabs'
+import HomeSeactionV2 from './c-cnps/home-section-v2'
+import { HomeWrapper } from './style'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { fetchHomeDataAction } from '@/store/modules/home'
 
 const Home = memo(() => {
   // 从rudex中获取数据
-  const {goodPriceInfo, highScoreInfo,discountInfo} =useSelector((state) => ({
+  const {goodPriceInfo, highScoreInfo,discountInfo,recommendInfo} =useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
     highScoreInfo: state.home.highScoreInfo,
-    discountInfo:state.home.discountInfo
+    discountInfo: state.home.discountInfo,
+    recommendInfo:state.home.recommendInfo
   }), shallowEqual)
   
   // 数据处理
-  const tabNames = discountInfo.dest_address?.map(item => item.name)
 
   // 派发异步请求
   const dispatch = useDispatch()
@@ -30,15 +28,13 @@ const Home = memo(() => {
       <HomeBanner />
       <div className='content'>
         {/* 折扣房源 */}
-        <div className='discount'>
-          <SectionHeader title={discountInfo.title} subtitle={discountInfo.subtitle} />
-          <SectionTabs tabNames={tabNames} />
-          <SectionRooms roomList={discountInfo.dest_list?.['成都']} itemWidth="33.3333%"></SectionRooms>
-        </div>
+        {Object.keys(discountInfo).length && <HomeSeactionV2 infoData={discountInfo} />}
+        {/* 推荐房源 */}
+        {Object.keys(recommendInfo).length && <HomeSeactionV2 infoData={recommendInfo} />}
         {/* 高性价比房源 */}
-        <HomeSection infoData={goodPriceInfo} />
+        { Object.keys(goodPriceInfo).length && <HomeSection infoData={goodPriceInfo} />}
         {/* 高分房源 */}
-        <HomeSection infoData={highScoreInfo} />
+        {Object.keys(goodPriceInfo).length && <HomeSection infoData={highScoreInfo} />}
       </div>
     </HomeWrapper>
   )
