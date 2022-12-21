@@ -5,14 +5,22 @@ import HomeSeactionV2 from './c-cnps/home-section-v2'
 import { HomeWrapper } from './style'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { fetchHomeDataAction } from '@/store/modules/home'
+import HomeLongfor from './c-cnps/home-longfor'
 
 const Home = memo(() => {
   // 从rudex中获取数据
-  const {goodPriceInfo, highScoreInfo,discountInfo,recommendInfo} =useSelector((state) => ({
+  const {
+    goodPriceInfo,
+    highScoreInfo,
+    discountInfo,
+    recommendInfo,
+    longforInfo
+  } = useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
     highScoreInfo: state.home.highScoreInfo,
     discountInfo: state.home.discountInfo,
-    recommendInfo:state.home.recommendInfo
+    recommendInfo: state.home.recommendInfo,
+    longforInfo:state.home.longforInfo
   }), shallowEqual)
   
   // 数据处理
@@ -28,13 +36,15 @@ const Home = memo(() => {
       <HomeBanner />
       <div className='content'>
         {/* 折扣房源 */}
-        {Object.keys(discountInfo).length && <HomeSeactionV2 infoData={discountInfo} />}
+        { Object.keys(discountInfo).length && <HomeSeactionV2 infoData={discountInfo} />}
         {/* 推荐房源 */}
-        {Object.keys(recommendInfo).length && <HomeSeactionV2 infoData={recommendInfo} />}
+        { Object.keys(recommendInfo).length && <HomeSeactionV2 infoData={recommendInfo} />}
+        {/* 向往地 */}
+        {Object.keys(longforInfo).length && <HomeLongfor infoData={longforInfo} />}
         {/* 高性价比房源 */}
         { Object.keys(goodPriceInfo).length && <HomeSection infoData={goodPriceInfo} />}
         {/* 高分房源 */}
-        {Object.keys(goodPriceInfo).length && <HomeSection infoData={highScoreInfo} />}
+        { Object.keys(goodPriceInfo).length && <HomeSection infoData={highScoreInfo} />}
       </div>
     </HomeWrapper>
   )

@@ -27,3 +27,10 @@ export function getHomeHotRecommendData() {
     url: '/home/hotrecommenddest'
   })
 }
+
+// 获取向往地数据
+export function getHomeLongForData() {
+  return SYRequest.get({
+    url: '/home/longfor'
+  })
+}
