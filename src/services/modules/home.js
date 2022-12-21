@@ -34,3 +34,10 @@ export function getHomeLongForData() {
     url: '/home/longfor'
   })
 }
+
+// 获取本地豪华房源
+export function getHomePlusData() {
+  return SYRequest.get({
+    url: '/home/plus'
+  })
+}
