@@ -32,6 +32,7 @@ export const PicWrapper = styled.div`
     .item {
       position: relative;
       height: 100%;
+      border: 1px solid #000;
       overflow: hidden;
       cursor: pointer;
 
@@ -70,7 +71,7 @@ export const PicWrapper = styled.div`
       width: 50%;
       height: 50%;
       box-sizing: border-box;
-      border: 1px solid #000;
+      /* border: 1px solid #000; */
     }
   }
 `
