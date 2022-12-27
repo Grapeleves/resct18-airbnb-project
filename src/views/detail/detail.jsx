@@ -1,10 +1,16 @@
 import React, { memo } from 'react'
+import { useSelector } from 'react-redux'
+import { DemoWrapper } from '../demo/style'
 
 const Detail = memo(() => {
+  const { detailInfo } = useSelector((state) => ({
+    detailInfo:state.detail.detailInfo
+  }))
+
   return (
-    <div>
-    Detail
-    </div>
+    <DemoWrapper>
+      {detailInfo.name}
+    </DemoWrapper>
   )
 })
 
