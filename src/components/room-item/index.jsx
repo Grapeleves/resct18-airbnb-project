@@ -1,17 +1,26 @@
 import PropTypes from 'prop-types'
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef,useState } from 'react'
 import { ItemWrapper } from './style'
 import Rating from '@mui/material/Rating';
 import { Carousel } from 'antd';
 import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
+import Indicator from '@/base-ui/indicator';
+import classNames from 'classnames';
 
 const RoomItem = memo((props) => {
   const { itemData, itemWidth = "25%" } = props
+  const [selectIndex, setSelectIndex] = useState(0)
   const swiperRef = useRef()
   
   function controlClickHandle(isRight = true) {
-    isRight ? swiperRef.current.next() :swiperRef.current.prev()
+    isRight ? swiperRef.current.next() : swiperRef.current.prev()
+
+    let newIndex = isRight ? selectIndex + 1 : selectIndex - 1
+    const len = itemData.picture_urls.length
+    if (newIndex < 0) newIndex = len - 1
+    if (newIndex > len - 1) newIndex = 0
+    setSelectIndex(newIndex)
   }
   
   return (
@@ -32,11 +41,24 @@ const RoomItem = memo((props) => {
               <IconArrowRight width={20} height={20}></IconArrowRight>
             </div>
           </div>
+          <div className='indicator'>
+            <Indicator selectIndex={selectIndex}>
+              {
+                itemData?.picture_urls.map((item, index) => {
+                  return (
+                    <div className={classNames("dot-item")} key={index}>
+                      <span className={classNames("dot",{active:selectIndex === index})}></span>
+                    </div>
+                  )
+                })
+              }
+            </Indicator>
+          </div>
           <Carousel dots={false} ref={swiperRef}>
             {
-              itemData?.picture_urls?.map(item => {
+              itemData?.picture_urls?.map((item,index) => {
                 return (
-                  <div className='cover'>
+                  <div className='cover' key={index}>
                     <img src={item} alt=""></img>
                   </div>
                 )

@@ -73,21 +73,21 @@ export const ItemWrapper = styled.div`
       bottom: 10px;
       margin: 0 auto;
 
-      .item {
+      .dot-item {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20%;
+        width: 14.28%;
 
         .dot {
-          width: 6px;
-          height: 6px;
+          width: 4px;
+          height: 4px;
           background-color: #fff;
           border-radius: 50%;
 
           &.active {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
           }
         }
       }
