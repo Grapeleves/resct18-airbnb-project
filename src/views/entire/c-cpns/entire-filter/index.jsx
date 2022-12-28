@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { memo, useState } from 'react'
 import classNames from 'classnames'
 import { FilterWrapper } from './style'
@@ -38,7 +37,5 @@ const EntireFilter = memo((props) => {
     </FilterWrapper>
   )
 })
-
-EntireFilter.propTypes = {}
 
 export default EntireFilter
