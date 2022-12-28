@@ -4,10 +4,12 @@ import IconClose from '@/assets/svg/icon-close'
 import PropTypes from 'prop-types'
 import React, { memo, useEffect, useState } from 'react'
 import { BrowserWrapper } from './style'
+import { CSSTransition,SwitchTransition } from 'react-transition-group'
 
 const PicBrowser = memo((props) => {
   const { pictureUrls, closeClick } = props
-  const [ currentIndex, setCurrentIndex ] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isNext,setIsNext] = useState(true)
   
   // 当图片浏览器展示出来时，要让滚动功能消失
   useEffect(() => {
@@ -27,10 +29,11 @@ const PicBrowser = memo((props) => {
     if (newIndex < 0) newIndex = pictureUrls.length - 1
     if (newIndex > pictureUrls.length - 1) newIndex = 0
     setCurrentIndex(newIndex)
+    setIsNext(isNext)
   }
 
   return (
-    <BrowserWrapper>
+    <BrowserWrapper isNext={isNext}>
       <div className='top'>
         <div className='close-btn' onClick={e => closeBtnClickHandle()}>
           <IconClose></IconClose>
@@ -46,7 +49,15 @@ const PicBrowser = memo((props) => {
           </div>
         </div>
         <div className='container'>
-          <img src={pictureUrls[currentIndex]} alt=''></img>
+          <SwitchTransition mode='in-out'>
+            <CSSTransition
+              key={pictureUrls[currentIndex]}
+              classNames="fade"
+              timeout={200}
+            >
+              <img src={pictureUrls[currentIndex]} alt=''></img>
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
       <div className='preview'></div>

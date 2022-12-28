@@ -30,7 +30,7 @@ export const BrowserWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex: 1;
-    /* overflow: hidden; */
+    overflow: hidden;
 
     .container {
       position: relative;
@@ -69,6 +69,26 @@ export const BrowserWrapper = styled.div`
         height: 100%;
         cursor: pointer;
       }
+    }
+
+    .fade-enter {
+      transform: translate(${props => props.isNext ? "100%" : "-100%"});
+      opacity: 0;
+    }
+
+    .fade-enter-active {
+      opacity: 1;
+      transform: translate(0);
+      transition: all 200ms ease;
+    }
+
+    .fade-exit {
+      opacity: 1;
+    }
+
+    .fade-exit-active {
+      opacity: 0;
+      transition: all 200ms ease;
     }
   }
 
