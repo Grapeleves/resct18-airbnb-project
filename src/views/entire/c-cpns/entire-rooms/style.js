@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const RoomsWrapper = styled.div`
+  margin-top:128px ;
   padding:30px 20px ;
   position:relative ;
 

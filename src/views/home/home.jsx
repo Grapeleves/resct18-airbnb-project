@@ -7,6 +7,7 @@ import HomeSectionV3 from './c-cnps/home-section-v3'
 import { HomeWrapper } from './style'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { fetchHomeDataAction } from '@/store/modules/home'
+import { changeHeaderConfigAction } from '@/store/modules/main'
 
 const Home = memo(() => {
   // 从rudex中获取数据
@@ -32,6 +33,7 @@ const Home = memo(() => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchHomeDataAction())
+    dispatch(changeHeaderConfigAction({isFixed:true}))
   },[dispatch])
 
   return (
