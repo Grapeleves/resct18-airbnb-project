@@ -50,15 +50,6 @@ const HeaderCenter = memo((props) => {
           </div>
         </div>
       </CSSTransition>
-      
-
-      {/* {
-        !isSearch ? (
-         
-        ) : (
-          
-        )
-      } */}
     </CenterWrapper>
   )
 })

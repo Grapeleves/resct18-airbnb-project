@@ -11,6 +11,7 @@ export const RightWrapper = styled.div`
     display: flex;
     align-items: center;
     box-sizing:content-box ;
+    color:${props => props.theme.isAlpha ? '#fff' : props.theme.text.primaryColor} ;
 
     .btn {
       height: 18px;
@@ -21,7 +22,7 @@ export const RightWrapper = styled.div`
       box-sizing:content-box ;
 
       &:hover {
-        background-color: #f5f5f5;
+        background-color: ${props => props.theme.isAlpha ? 'rgba(255,255,255,.1)' : "f5f5f5"};
       }
     }
   }

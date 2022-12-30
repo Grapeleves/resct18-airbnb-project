@@ -1,21 +1,21 @@
 import { changeHeaderConfigAction } from '@/store/modules/main'
 import React, { memo, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { DemoWrapper } from '../demo/style'
 import DetailInfo from './c-cpns/detail-info'
 import DetailPic from './c-cpns/detail-pic'
+import { DetailWrapper } from './style'
 
 const Detail = memo(() => {
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(changeHeaderConfigAction({isFixed:false}))
+    dispatch(changeHeaderConfigAction({isFixed:false,topAlpha:false}))
   }, [dispatch])
   
   return (
-    <DemoWrapper>
+    <DetailWrapper>
       <DetailPic></DetailPic>
       <DetailInfo></DetailInfo>
-    </DemoWrapper>
+    </DetailWrapper>
   )
 })
 
